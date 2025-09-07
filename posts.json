@@ -1,23 +1,17 @@
 [
   {
     "title": "Hosting my first website",
-    "file": "firstwebsite.html"
-    "date": "07-09-2025"
+    "file": "firstwebsite.html",
+    "date": "2025-09-07"
   },
   {
-    "title": "Another Entry",
-    "file": "blog2.html"
-    "date": "07-09-2025"
+    "title": "Another Blog Post",
+    "file": "blog2.html",
+    "date": "2025-09-05"
   },
   {
     "title": "Thoughts on Something",
-    "file": "blog3.html"
-    "date": "07-09-2025"
+    "file": "blog3.html",
+    "date": "2025-09-01"
   }
 ]
-
-
-
-
-
-
