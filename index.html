@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Name - Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 0.5rem 0;
+    }
+    a {
+      text-decoration: none;
+      color: #0066cc;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .date {
+      color: #666;
+      font-size: 0.9em;
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Name</h1>
+  <h2>Blog Posts</h2>
+  <ul id="blog-list"></ul>
+
+  <script>
+    fetch("posts.json")
+      .then(response => response.json())
+      .then(posts => {
+        // sort newest → oldest by date
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        const list = document.getElementById("blog-list");
+        posts.forEach(post => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = post.file;
+          a.textContent = post.title;
+
+          const date = document.createElement("span");
+          date.className = "date";
+          date.textContent = `(${post.date})`;
+
+          li.appendChild(a);
+          li.appendChild(date);
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>

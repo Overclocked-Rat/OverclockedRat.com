@@ -1,0 +1,14 @@
+[
+  {
+    "title": "My First Blog Post",
+    "file": "blog1.html"
+  },
+  {
+    "title": "Another Entry",
+    "file": "blog2.html"
+  },
+  {
+    "title": "Thoughts on Something",
+    "file": "blog3.html"
+  }
+]
