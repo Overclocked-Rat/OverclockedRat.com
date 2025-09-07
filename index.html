@@ -44,13 +44,14 @@
   <ul id="blog-list"></ul>
 
   <script>
-    fetch("posts.json")
+    fetch("posts.json?" + new Date().getTime())
       .then(response => response.json())
       .then(posts => {
         // sort newest → oldest by date
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         const list = document.getElementById("blog-list");
+        list.innerHTML = ""; //Clears previous items from list
         posts.forEach(post => {
           const li = document.createElement("li");
           const a = document.createElement("a");
@@ -69,4 +70,5 @@
   </script>
 </body>
 </html>
+
 
