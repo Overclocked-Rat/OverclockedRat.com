@@ -48,27 +48,40 @@
       .then(response => response.json())
       .then(posts => {
         // sort newest → oldest by date
-        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        posts.sort((a, b) => {
+          const dateA = a.date ? new Date(a.date) : new Date(0);
+          const dateB = b.date ? new Date(b.date) : new Date(0);
+          return dateB - dateA;
+        });
 
         const list = document.getElementById("blog-list");
         list.innerHTML = ""; //Clears previous items from list
+        
         posts.forEach(post => {
           const li = document.createElement("li");
           const a = document.createElement("a");
           a.href = post.file;
           a.textContent = post.title;
 
-          const date = document.createElement("span");
-          date.className = "date";
-          date.textContent = `(${post.date})`;
-
           li.appendChild(a);
-          li.appendChild(date);
+
+          // only show date if it exists
+          if (post.date) {
+            const date = document.createElement("span");
+            date.className = "date";
+            date.textContent = `(${post.date})`;
+            li.appendChild(date);
+          }
+
           list.appendChild(li);
         });
+      })
+      .catch(error => {
+        console.error("Failed to load blog posts:", error);
       });
   </script>
 </body>
 </html>
+
 
 
