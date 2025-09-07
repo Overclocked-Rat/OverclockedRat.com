@@ -2,22 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>OVERCLOCKED RAT - Blog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat&display=swap" rel="stylesheet">
+  <title>Your Name - Blog</title>
   <style>
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: Arial, sans-serif;
       max-width: 800px;
       margin: 2rem auto;
       padding: 0 1rem;
       line-height: 1.6;
-      background-color: #0B0C10; /* dark background */
-      color: #F0EDEE; /* light text */
+      background-color: #0B0C10; /* background color */
+      color: #F0EDEE; /* text color */
     }
     h1, h2 {
-      font-family: 'Merriweather', serif;
       text-align: center;
-      color: #F0EDEE;
+      color: #F0EDEE; /* ensure titles are same color */
     }
     ul {
       list-style: none;
@@ -28,21 +26,20 @@
     }
     a {
       text-decoration: none;
-      color: #66FCF1; /* link color */
+      color: #F0EDEE; /* links same color */
     }
     a:hover {
-      color: #45A29E; /* hover link */
       text-decoration: underline;
     }
     .date {
-      color: #C5C6C7; /* softer light gray for date */
+      color: #F0EDEE; /* date same color */
       font-size: 0.9em;
       margin-left: 0.5rem;
     }
   </style>
 </head>
 <body>
-  <h1>OVERCLOCKED RAT</h1>
+  <h1>Your Name</h1>
   <h2>Blog Posts</h2>
   <ul id="blog-list"></ul>
 
@@ -63,3 +60,12 @@
           const date = document.createElement("span");
           date.className = "date";
           date.textContent = `(${post.date})`;
+
+          li.appendChild(a);
+          li.appendChild(date);
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
