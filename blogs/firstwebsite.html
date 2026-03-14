@@ -4,29 +4,103 @@
   <meta charset="UTF-8">
   <title>Hosting my first website - 07/09/2025</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    /* Starfield canvas */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none; /* allow clicks on content above */
+    }
+
+    /* Content container */
+    #content {
+      position: relative;
+      z-index: 1; /* content above canvas */
       max-width: 800px;
       margin: 2rem auto;
       padding: 0 1rem;
+      color: #F0EDEE;
+      font-family: Arial, sans-serif;
       line-height: 1.6;
-      background-color: #0B0C10; /* background color */
-      color: #F0EDEE; /* default text color */
     }
+
+    body {
+      background-color: #0B0C10; /* fallback */
+      margin: 0;
+    }
+
     h1 {
       text-align: center;
     }
+
     a {
       text-decoration: none;
       color: #F0EDEE;
     }
+
+    a:hover {
+      color: #66FCF1;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <a href="/">&larr; Back to Home</a>
-  <h1>Hosting my first website</h1>
-  <p><em>Posted on 07/09/2025</em></p>
-  <p>Well today i bit the bullet, bought a domain name and proceeded to find out how expensive website hosting is. So after a little internet rummage i came accross "Reddit Pages" which more or less allows me to host a static HTML site for free, perfect.</p>
-  <p>Going forward i plan to use this space as my own little corner of the internet where i can chart out my madness as i work my way through my assorted projects and challenges.<p>
+  <!-- Starfield -->
+  <canvas id="starfield"></canvas>
+
+  <!-- Blog content -->
+  <div id="content">
+    <a href="/">&larr; Back to Home</a>
+    <h1>Hosting my first website</h1>
+    <p><em>Posted on 07/09/2025</em></p>
+    <p>Well today i bit the bullet, bought a domain name and proceeded to find out how expensive website hosting is. So after a little internet rummage i came accross "Reddit Pages" which more or less allows me to host a static HTML site for free, perfect.</p>
+    <p>Going forward i plan to use this space as my own little corner of the internet where i can chart out my madness as i work my way through my assorted projects and challenges.</p>
+  </div>
+
+  <script>
+    // --- Starfield JS ---
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const numStars = 150;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5 + 0.5,
+        alpha: Math.random(),
+        delta: Math.random() * 0.02
+      });
+    }
+
+    function animateStars() {
+      ctx.fillStyle = '#0B0C10';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let star of stars) {
+        star.alpha += star.delta;
+        if (star.alpha <= 0 || star.alpha >= 1) star.delta *= -1;
+
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+  </script>
 </body>
 </html>
