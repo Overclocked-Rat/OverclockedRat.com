@@ -13,57 +13,69 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;           /* behind everything */
-      pointer-events: none; /* allow clicks through canvas */
+      z-index: 0;
+      pointer-events: none; /* allow clicks through */
     }
 
-    /* Page content styles */
-    body {
-      font-family: 'Montserrat', sans-serif;
+    /* Container for content */
+    #content {
+      position: relative;
+      z-index: 1; /* ensures content sits above canvas */
       max-width: 800px;
       margin: 2rem auto;
       padding: 0 1rem;
+      color: #F0EDEE;
+      font-family: 'Montserrat', sans-serif;
       line-height: 1.6;
-      background-color: #0B0C10; /* fallback dark background */
-      color: #F0EDEE;            /* light text */
-      position: relative;         /* stacking context for z-index */
-      z-index: 1;
     }
+
     h1, h2 {
       font-family: 'Merriweather', serif;
       text-align: center;
       color: #F0EDEE;
     }
+
     ul {
       list-style: none;
       padding: 0;
     }
+
     li {
       margin: 0.5rem 0;
     }
+
     a {
       text-decoration: none;
-      color: #66FCF1; /* link color */
+      color: #66FCF1;
     }
+
     a:hover {
-      color: #45A29E; /* hover color */
+      color: #45A29E;
       text-decoration: underline;
     }
+
     .date {
-      color: #C5C6C7; /* softer gray for dates */
+      color: #C5C6C7;
       font-size: 0.9em;
       margin-left: 0.5rem;
+    }
+
+    body {
+      background-color: #0B0C10; /* fallback for canvas */
+      margin: 0; /* remove default margin */
     }
   </style>
 </head>
 <body>
-  <!-- Starfield background -->
+  <!-- Starfield canvas -->
   <canvas id="starfield"></canvas>
 
-  <!-- Page content -->
-  <h1>OVERCLOCKED RAT</h1>
-  <h2>Blog Posts</h2>
-  <ul id="blog-list"></ul>
+  <!-- Content container -->
+  <div id="content">
+    <h1>OVERCLOCKED RAT</h1>
+    <h2>Blog Posts</h2>
+    <ul id="blog-list"></ul>
+  </div>
 
   <script>
     // --- Starfield JS ---
@@ -108,7 +120,7 @@
     animateStars();
 
     // --- Blog list loader ---
-    fetch("posts.json?" + new Date().getTime()) // prevent caching
+    fetch("posts.json?" + new Date().getTime())
       .then(response => response.json())
       .then(posts => {
         posts.sort((a, b) => {
