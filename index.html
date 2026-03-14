@@ -6,14 +6,28 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat&display=swap" rel="stylesheet">
   <style>
+    /* Starfield canvas styles */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none; /* allows clicks on content above */
+    }
+
+    /* Page content styles */
     body {
       font-family: 'Montserrat', sans-serif;
       max-width: 800px;
       margin: 2rem auto;
       padding: 0 1rem;
       line-height: 1.6;
-      background-color: #0B0C10; /* dark background */
-      color: #F0EDEE; /* light text */
+      background-color: #0B0C10; /* fallback dark background */
+      color: #F0EDEE;
+      position: relative;
+      z-index: 1; /* content above starfield */
     }
     h1, h2 {
       font-family: 'Merriweather', serif;
@@ -43,15 +57,59 @@
   </style>
 </head>
 <body>
+  <!-- Starfield background -->
+  <canvas id="starfield"></canvas>
+
   <h1>OVERCLOCKED RAT</h1>
   <h2>Blog Posts</h2>
   <ul id="blog-list"></ul>
 
   <script>
+    // --- Starfield JS ---
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const numStars = 150;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5 + 0.5,
+        alpha: Math.random(),
+        delta: Math.random() * 0.02
+      });
+    }
+
+    function animateStars() {
+      ctx.fillStyle = '#0B0C10';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let star of stars) {
+        star.alpha += star.delta;
+        if (star.alpha <= 0 || star.alpha >= 1) star.delta *= -1;
+
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+
+    // --- Blog list loader ---
     fetch("posts.json?" + new Date().getTime()) // prevent caching
       .then(response => response.json())
       .then(posts => {
-        // sort newest → oldest
         posts.sort((a, b) => {
           const dateA = a.date ? new Date(a.date) : new Date(0);
           const dateB = b.date ? new Date(b.date) : new Date(0);
@@ -59,7 +117,7 @@
         });
 
         const list = document.getElementById("blog-list");
-        list.innerHTML = ""; // clear old items
+        list.innerHTML = "";
 
         posts.forEach(post => {
           const li = document.createElement("li");
@@ -69,11 +127,10 @@
           a.textContent = post.title;
           li.appendChild(a);
 
-          // only show date if it exists
           if (post.date) {
             const dateObj = new Date(post.date);
             const day = String(dateObj.getDate()).padStart(2, '0');
-            const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // months are 0-based
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
             const year = dateObj.getFullYear();
 
             const date = document.createElement("span");
@@ -92,4 +149,3 @@
   </script>
 </body>
 </html>
-
