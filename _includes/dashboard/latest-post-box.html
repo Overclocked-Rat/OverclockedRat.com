@@ -1,0 +1,15 @@
+{% assign latest_post = site.posts.first %}
+
+{% if latest_post %}
+  <div class="dashboard-box dashboard-box--post">
+    <div class="dashboard-box__label px-1">Latest from the blog</div>
+    {% include post-card.html post=latest_post lang=lang %}
+  </div>
+{% else %}
+  <article class="card-wrapper card dashboard-box dashboard-box--post dashboard-box--empty">
+    <div class="card-body">
+      <div class="dashboard-box__label">Latest from the blog</div>
+      <p class="text-muted mb-0">No posts yet — check back soon.</p>
+    </div>
+  </article>
+{% endif %}

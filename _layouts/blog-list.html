@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+{% include lang.html %}
+
+<div id="post-list" class="flex-grow-1 px-xl-1">
+  {% if site.posts.size > 0 %}
+    {% for post in site.posts %}
+      {% include post-card.html post=post lang=lang %}
+    {% endfor %}
+  {% else %}
+    <p class="text-muted">No posts yet — check back soon.</p>
+  {% endif %}
+</div>

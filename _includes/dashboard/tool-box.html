@@ -1,0 +1,31 @@
+{% assign tools = site.data.tools %}
+
+{% if tools and tools.size > 0 %}
+  {% assign fallback_tool = tools.first %}
+
+  <article class="card-wrapper card dashboard-box dashboard-box--tool" id="dashboard-tool-box">
+    <a href="{{ fallback_tool.url | relative_url }}" class="post-preview row g-0">
+      <div class="col-12">
+        <div class="card-body d-flex flex-column">
+          <div class="dashboard-box__label" id="dashboard-tool-label">Featured tool</div>
+          <h1 class="card-title my-2 mt-md-0" id="dashboard-tool-title">{{ fallback_tool.name }}</h1>
+          <div class="card-text content mt-0 mb-3">
+            <p id="dashboard-tool-description">{{ fallback_tool.description }}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+  </article>
+
+  <script type="application/json" id="dashboard-tool-data">
+    {{ tools | jsonify }}
+  </script>
+  <script src="{{ '/assets/js/tool-tracker.js' | relative_url }}" defer></script>
+{% else %}
+  <article class="card-wrapper card dashboard-box dashboard-box--tool dashboard-box--empty">
+    <div class="card-body">
+      <div class="dashboard-box__label">Featured tool</div>
+      <p class="text-muted mb-0">Tools are coming soon.</p>
+    </div>
+  </article>
+{% endif %}
