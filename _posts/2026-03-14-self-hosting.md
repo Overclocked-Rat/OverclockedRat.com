@@ -1,0 +1,56 @@
+---
+title: Self Hosting
+date: 2026-03-14 00:00:00 +0800
+categories: [Self Hosting]
+tags: [homelab, docker, jellyfin, tailscale]
+---
+
+## Intro
+
+I have allways had a fascination with servers and hosting things for yourself, not for the ussual reasons of privacy and control but rather convienence and for the love of tinkering.
+
+I have allways been the one to host game servers in my friend group, the one to setup and maintain discord servers etc. Eventually i decided if i was gonna be the one to host all these things and more i would like to also have the fun of setting up the hardware and software and learn more about networking in the process.
+
+Going into this i had no specific goals other than to perhaps host game servers locally as to not have to pay a provider like Pebblehost for the privelage of using their servers, and so in the pursuit of saving a few bucks i managed to spend hundreds and will probably never see a return on investment, but i believe i have learnt so much as to justifiy this.
+
+## Hardware
+
+For hardware my mainserver currently is an older HP Pro desk (i5-7500 - 16GB DDR4) which has been more than enough to host several game servers aswell as various other services without breaking a sweat.
+
+I also have a Zima blade which is arround the size of a raspberry pi but has 4x X86 cores and 16GB sodimm ddr3 and is surprisingly punchy. It also has a PCIE slot built into the side of which i havent found a use yet but will likely add a small PCIE to 2x M.2 card eventually
+
+Previously i ran a Dell T420 tower with dual Xeon E5-2470 V2's for a total of 40 cores and 32GB of ECC DDR3, its primary use was as a Proxmox server in which i mainly spun up all different maner of Linux distros to try out and experiment with. Its final purpose was as a B.O.I.N.C contributer and was used in Asteroids@home where i processed 32.68 quadrillion floating-point operations before a thunderstorm came along and put it out of its misery (Yeah, i dont know how i forgot to use a surge protector... but i did) so for now its out of comission until i can hopefully repair it.
+
+<img src="/assets/img/asteroidscertificate.png" alt="Certificate showing how much power i wasted for someone to use my server to scan asteroid imagery... cool!" style="width: 60%;">
+
+## Software
+
+Both my current servers run Casa OS on top of Ubuntu server, early on the main reason for this choice was simplicity, but as i have learnt more about docker and containers it has become somewhat of a limiting factor and may be swapped out down the line.
+
+But for now it does its job and keeps everything in a nice tidy web GUI i can access anywhere
+
+And on the point of external access, i live in quite a remote part of rural Australia and use starlink as my network provider which has been amazing compared to telstra. One major downside is there just isn't an easy way to port-forward anything i host to the outside internet, thus rendering all my services jsut about pointless unless your on the home network.
+
+In my search for workaround i came across Tailscale. I wont pretend to fully understand how it functions yet, but from what i understand it creates a fake virtual network, and any device outside my local network can be connected in such a way as to be tricked into thinking it is part of said network. In practise it just means anything i want to connect to my servers with from the outside must have tailscale installed and linked. This has worked quite well and has avoided a lot of the draw backs of other solutions like playit.gg which has to be routed through some server far away thereby introducing a ton of latency.
+
+## Services
+
+Now what do i actually use all this for?
+
+Jellyfin with a full Sonarr, Radarr, Prowlarr & Jellyseerr stack has been by far the most fun and frustrating to get functional but has been so worth it with rising streaming costs. Essentially Radarr and Sonarr is used to "Request" movies and shows/anime respectively, these requests then get passed through to Prowlarr which uses various indexes to find popular and quality torrents of the requested content, when a torrent is found it is given to Qbittorrent which will download it whilst being run inside a VPN. Once the content has been downloaded, Radarr/Sonarr will go through and rename the files and folders and put them where jellyfin can then access them.
+
+Using all this, Jellyfin then provides a Netflix style experience to view all this content. It supports as many accounts as i want and using tailscale can be viewed anywhere on just about anything.
+
+Is this pirating... yup, is Prime video $18+ a month whilst still including several minute unskippable ads... yup.
+
+As Gaben put it, "Piracy is almost always a service problem and not a pricing problem"
+
+I also host game servers for Minecraft, Terraria, Valheim, Hytale & Project zomboid. One thing i have found i dislike about hosting these on my own hardware is the mental stress of making sure you have backups of world saves etc as being to blame for losing any to corruption or anything else aint fun. I have continued to be impressed by how little resources these actually require, the little i5-7500 has taken it in stride whilst being very power efficient.
+
+## Summary
+
+At the end of it all im still tinkering and constantly breaking things, but its pretty cool to not have to rely on big companies for your own basic services.
+
+I plan to look into more functional services such as a proper Home assistant setup with automation for the house and the appliances within.
+
+Given how much i have learnt from jumping off the deep end on this, i highly recomend anyone with any interest at all to just pick up an old cheap mini pc off Ebay and go for it.
