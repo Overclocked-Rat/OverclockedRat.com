@@ -56,3 +56,53 @@
     height: 340px;
   }
 }
+
+/* ---- Footer hamster wheel (custom) ---- */
+
+.footer-wheel {
+  flex-shrink: 0;
+}
+
+.wheel-spin {
+  transform-origin: 50px 50px;
+  animation: wheel-spin 0.6s linear infinite;
+}
+
+@keyframes wheel-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.wheel-rat {
+  transform-origin: 50px 68px;
+  animation: rat-bob 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes rat-bob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-1.5px);
+  }
+}
+
+.leg1,
+.leg2 {
+  animation: leg-run 0.3s linear infinite;
+}
+
+.leg2 {
+  animation-delay: 0.15s;
+}
+
+@keyframes leg-run {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}

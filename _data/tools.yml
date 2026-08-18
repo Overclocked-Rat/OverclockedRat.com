@@ -3,10 +3,13 @@
 #   - falls back to the FIRST entry in this list by default
 #   - once a visitor has used a tool, personalizes to their own most-used one
 #     (tracked locally in their browser, not a global/site-wide count)
-#
-# Example entry — uncomment and fill in once your first tool page exists:
-#
-# - id: jpg-to-png
-#   name: "JPG to PNG Converter"
-#   description: "Convert JPG images to PNG, right in your browser — nothing is uploaded."
-#   url: "/converters/jpg-to-png/"
+
+- id: unit-converter
+  name: "Unit Converter"
+  description: "Convert length, weight, temperature, and data storage units — instantly, right in your browser."
+  url: "/tools/unit-converter/"
+
+- id: timezone-converter
+  name: "Timezone Converter"
+  description: "See what a time in one timezone looks like across several others at once."
+  url: "/tools/timezone-converter/"

@@ -1,0 +1,32 @@
+<!-- The Footer -->
+
+<footer
+  aria-label="Site Info"
+  class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-center align-items-lg-center pb-lg-3
+  "
+>
+  <p class="d-flex align-items-center gap-2 mb-0">
+    <svg class="footer-wheel" viewBox="0 0 100 100" width="34" height="34" aria-hidden="true">
+      <g class="wheel-spin">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="4"/>
+        <line x1="50" y1="8" x2="50" y2="92" stroke="currentColor" stroke-width="3"/>
+        <line x1="8" y1="50" x2="92" y2="50" stroke="currentColor" stroke-width="3"/>
+        <line x1="20" y1="20" x2="80" y2="80" stroke="currentColor" stroke-width="3"/>
+        <line x1="80" y1="20" x2="20" y2="80" stroke="currentColor" stroke-width="3"/>
+      </g>
+      <g class="wheel-rat">
+        <path d="M36 68 Q 24 60 30 50" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="50" cy="68" rx="14" ry="9" fill="currentColor"/>
+        <circle cx="63" cy="63" r="7" fill="currentColor"/>
+        <circle cx="67" cy="57" r="3" fill="currentColor"/>
+        <line class="leg leg1" x1="44" y1="76" x2="44" y2="83" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line class="leg leg2" x1="57" y1="76" x2="57" y2="83" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+    </svg>
+    {{- '©' }}
+    <time>{{ 'now' | date: '%Y' }}</time>
+    Overclocked Rat.
+  </p>
+</footer>
