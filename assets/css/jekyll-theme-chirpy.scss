@@ -325,3 +325,300 @@
     width: 6rem;
   }
 }
+
+/* ── PDF tools ───────────────────────────────────────────────────────────── */
+/* Reuses .ocr-drop, .ocr-btn and .ocr-status from the emulator block above.
+ * Those were written generically enough to carry over; only the file-list UI
+ * is new here. */
+
+.ocr-tool-privacy {
+  font-size: 0.85rem;
+  color: var(--text-muted-color);
+  margin-bottom: 1.25rem;
+
+  i {
+    margin-right: 0.35rem;
+  }
+}
+
+.pdfm-list-wrap {
+  margin-top: 1.25rem;
+  border: 1px solid var(--card-border-color, var(--main-border-color));
+  border-radius: var(--bs-border-radius, 0.5rem);
+  background: var(--card-bg, var(--card-bg-color));
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.pdfm-list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+.pdfm-summary {
+  font-size: 0.82rem;
+  color: var(--text-muted-color);
+}
+
+.pdfm-list {
+  list-style: decimal;
+  margin: 0.75rem 0 0;
+  padding-left: 1.6rem;
+}
+
+.pdfm-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0;
+
+  & + .pdfm-item {
+    border-top: 1px solid var(--main-border-color);
+  }
+
+  &::marker {
+    color: var(--text-muted-color);
+    font-size: 0.85rem;
+  }
+}
+
+.pdfm-item-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pdfm-item-name {
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.pdfm-item-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted-color);
+  margin-top: 0.1rem;
+}
+
+.pdfm-item-controls {
+  display: flex;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.pdfm-mini-btn {
+  width: 1.9rem;
+  height: 1.9rem;
+  line-height: 1;
+  font-size: 0.9rem;
+  border-radius: var(--bs-border-radius, 0.3rem);
+  border: 1px solid var(--main-border-color);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+
+  &:hover:not(:disabled) {
+    border-color: var(--link-color);
+    color: var(--link-color);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}
+
+.pdfm-item-remove:hover:not(:disabled) {
+  border-color: #d9534f;
+  color: #d9534f;
+}
+
+.pdfm-actions {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--main-border-color);
+}
+
+.pdfm-name-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted-color);
+  margin-bottom: 0.25rem;
+}
+
+.pdfm-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.pdfm-name {
+  width: 11rem;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--bs-border-radius, 0.3rem);
+  border: 1px solid var(--main-border-color);
+  background: transparent;
+  color: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: var(--link-color);
+  }
+}
+
+.pdfm-name-ext {
+  font-size: 0.85rem;
+  color: var(--text-muted-color);
+}
+
+#pdfm-go {
+  margin-left: auto;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+    border-color: var(--main-border-color);
+    color: var(--text-muted-color);
+  }
+}
+
+@media (max-width: 576px) {
+  .pdfm-actions {
+    align-items: stretch;
+  }
+
+  #pdfm-go {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .pdfm-name {
+    width: 100%;
+  }
+}
+/* ── Shared hub tiles (Tools + Emulators) ────────────────────────────────── */
+/*
+ * Used by both _tabs/tools.md and _tabs/emulators.md so the two hubs can't
+ * drift apart. Replaces the earlier `.emulator-grid` / `.emulator-tile` blocks.
+ *
+ * Two knobs:
+ *   - `grid-template-columns`: change `repeat(2, ...)` to 3 for smaller tiles,
+ *     or `repeat(auto-fill, minmax(190px, 1fr))` to let it reflow.
+ *   - `aspect-ratio` on .tile: 1/1 is a true square, 4/3 is the chunky-button
+ *     look set here, 3/2 is flatter.
+ */
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.tile-grid-empty {
+  grid-column: 1 / -1;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  aspect-ratio: 4 / 3;
+  padding: 1rem;
+  margin-bottom: 0; /* grid gap handles spacing */
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: inherit;
+    text-decoration: none;
+    transform: translateY(-2px);
+    border-color: var(--link-color);
+
+    .tile-icon {
+      transform: scale(1.08);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+  }
+}
+
+.tile-icon {
+  font-size: 3.25rem;
+  line-height: 1;
+  color: var(--link-color);
+  margin-bottom: 1.1rem;
+  transition: transform 0.15s ease;
+}
+
+.tile-name {
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.tile-tagline {
+  font-size: 0.95rem;
+  color: var(--text-muted-color);
+  margin-top: 0.45rem;
+  line-height: 1.35;
+
+  /* Falls back to the full `description` when no `tagline` is set, so clamp it
+   * rather than letting a long sentence blow the tile out. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .tile-grid {
+    gap: 0.75rem;
+  }
+
+  .tile {
+    padding: 0.75rem;
+  }
+
+  .tile-icon {
+    font-size: 2.25rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .tile-name {
+    font-size: 1.05rem;
+  }
+
+  .tile-tagline {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .tile-icon {
+    transition: none;
+  }
+
+  .tile:hover,
+  .tile:focus-visible,
+  .tile:hover .tile-icon {
+    transform: none;
+  }
+}

@@ -1,0 +1,64 @@
+---
+layout: page
+title: PDF Merge
+permalink: /tools/pdf-merge/
+---
+
+<div id="pdfm" class="ocr-tool">
+  <p class="ocr-tool-privacy">
+    <i class="fas fa-lock"></i>
+    Your files are read directly by your browser and never uploaded. Nothing
+    leaves this device.
+  </p>
+
+  <div id="pdfm-drop" class="ocr-drop" tabindex="0" role="button"
+       aria-label="Choose PDF files, or drop them here">
+    <i class="fas fa-file-pdf ocr-drop-icon"></i>
+    <p class="ocr-drop-main">Choose PDFs to merge</p>
+    <p class="ocr-drop-sub">or drop them here &middot; add as many as you like</p>
+  </div>
+  <input type="file" id="pdfm-file" accept="application/pdf,.pdf" multiple hidden>
+
+  <div id="pdfm-list-wrap" class="pdfm-list-wrap" hidden>
+    <div class="pdfm-list-head">
+      <span id="pdfm-summary" class="pdfm-summary"></span>
+      <button type="button" id="pdfm-clear" class="ocr-btn ocr-btn-quiet">
+        Clear all
+      </button>
+    </div>
+
+    <ol id="pdfm-list" class="pdfm-list"></ol>
+
+    <div class="pdfm-actions">
+      <label for="pdfm-name" class="pdfm-name-label">Output name</label>
+      <div class="pdfm-name-row">
+        <input type="text" id="pdfm-name" class="pdfm-name" value="merged"
+               spellcheck="false" autocomplete="off">
+        <span class="pdfm-name-ext">.pdf</span>
+      </div>
+      <button type="button" id="pdfm-go" class="ocr-btn ocr-btn-primary">
+        <i class="fas fa-object-group"></i> Merge &amp; download
+      </button>
+    </div>
+  </div>
+
+  <p id="pdfm-status" class="ocr-status" role="status" aria-live="polite"></p>
+</div>
+
+<h3>Notes</h3>
+
+<ul>
+  <li>Files merge in the order shown. Use the arrows to reorder them.</li>
+  <li>
+    Password-protected PDFs can't be opened — you'll get a clear message rather
+    than a silent failure. Remove the password first, then merge.
+  </li>
+  <li>
+    Everything happens in this tab, so very large files are limited by your
+    device's memory rather than an upload limit.
+  </li>
+</ul>
+
+<script src="{{ '/assets/vendor/pdf-lib/pdf-lib.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/tool-tracker.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/tool-pdf-merge.js' | relative_url }}"></script>

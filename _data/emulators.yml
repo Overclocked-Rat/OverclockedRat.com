@@ -1,6 +1,12 @@
 # Canonical list of emulators. Feeds the Emulators tab listing.
 #
-# Each entry needs: id, name, description, url
+# Each entry needs: id, name, tagline, url
+# Optional: icon (Font Awesome class; defaults to fas fa-gamepad)
+#
+# tagline is deliberately short — it renders inside a tile, not a paragraph.
+# Aim for four or five words. Longer text makes the tile read as an article
+# preview rather than a button.
+#
 # Adding a system also requires:
 #   1. its two core files in assets/emulatorjs/data/cores/
 #      (<core>-wasm.data and <core>-legacy-wasm.data)
@@ -9,7 +15,6 @@
 
 - id: gba
   name: Game Boy Advance
-  description: >-
-    Load your own GBA ROM and play it in the browser. Save states, shaders,
-    adjustable speed, and portable .sav export.
+  tagline: Load a ROM and play
+  icon: fas fa-gamepad
   url: /emulators/gba/

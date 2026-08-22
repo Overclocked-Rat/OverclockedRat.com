@@ -5,22 +5,20 @@ order: 1
 
 Everything here runs entirely in your browser — nothing you enter is ever uploaded anywhere.
 
-<div class="tools-list mt-4">
+<div class="tile-grid mt-4">
   {% assign tools = site.data.tools %}
   {% if tools and tools.size > 0 %}
     {% for tool in tools %}
-      <article class="card-wrapper card mb-3">
-        <a href="{{ tool.url | relative_url }}" class="post-preview row g-0">
-          <div class="col-12">
-            <div class="card-body">
-              <h2 class="card-title my-1">{{ tool.name }}</h2>
-              <p class="card-text text-muted mb-0">{{ tool.description }}</p>
-            </div>
-          </div>
-        </a>
-      </article>
+      <a href="{{ tool.url | relative_url }}" class="card-wrapper card tile">
+        <i class="{{ tool.icon | default: 'fas fa-screwdriver-wrench' }} tile-icon" aria-hidden="true"></i>
+        <span class="tile-name">{{ tool.name }}</span>
+        {% assign blurb = tool.tagline | default: tool.description %}
+        {% if blurb %}
+          <span class="tile-tagline">{{ blurb }}</span>
+        {% endif %}
+      </a>
     {% endfor %}
   {% else %}
-    <p class="text-muted">Tools are coming soon.</p>
+    <p class="text-muted tile-grid-empty">Tools are coming soon.</p>
   {% endif %}
 </div>
