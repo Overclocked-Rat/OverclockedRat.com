@@ -4,6 +4,34 @@
 #   - once a visitor has used a tool, personalizes to their own most-used one
 #     (tracked locally in their browser, not a global/site-wide count)
 
+- id: pdf-merge
+  name: PDF Merge
+  description: >-
+    Combine several PDFs into one, in the order you choose. Runs entirely in
+    your browser — your files are never uploaded.
+  url: /tools/pdf-merge/
+  icon: fas fa-object-group
+  tagline: Combine PDFs into one
+
+- id: pdf-split
+  name: PDF Split
+  description: >-
+    Pull specific pages out of a PDF, or split every page into its own file.
+    Runs entirely in your browser — your file is never uploaded.
+  url: /tools/pdf-split/
+  icon: fas fa-scissors
+  tagline: Extract or split PDF pages
+
+- id: pdf-compress
+  name: PDF Compress
+  description: >-
+    Shrink a PDF by recompressing its embedded photos — text and vector
+    graphics stay untouched. Runs entirely in your browser — your file is
+    never uploaded.
+  url: /tools/pdf-compress/
+  icon: fas fa-compress
+  tagline: Shrink PDFs without losing text
+
 - id: unit-converter
   name: "Unit Converter"
   description: "Convert length, weight, temperature, and data storage units — instantly, right in your browser."
@@ -17,12 +45,3 @@
   url: "/tools/timezone-converter/"
   icon: fas fa-clock
   tagline: Compare times across zones
-
-- id: pdf-merge
-  name: PDF Merge
-  description: >-
-    Combine several PDFs into one, in the order you choose. Runs entirely in
-    your browser — your files are never uploaded.
-  url: /tools/pdf-merge/
-  icon: fas fa-object-group
-  tagline: Combine PDFs into one

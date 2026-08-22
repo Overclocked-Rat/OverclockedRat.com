@@ -505,6 +505,303 @@
     width: 100%;
   }
 }
+
+/* ---- PDF Split ---- */
+/* Extends the PDF tools block above — reuses .ocr-tool-privacy, .ocr-drop,
+ * .ocr-btn and .ocr-status. Everything below is new: the page-thumbnail grid,
+ * its selected-state highlight, and the split-specific action row. */
+
+.pdfs-work-wrap {
+  margin-top: 1.25rem;
+  border: 1px solid var(--card-border-color, var(--main-border-color));
+  border-radius: var(--bs-border-radius, 0.5rem);
+  background: var(--card-bg, var(--card-bg-color));
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.pdfs-file-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+.pdfs-file-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted-color);
+  overflow-wrap: anywhere;
+}
+
+.pdfs-select-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.pdfs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
+.pdfs-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.4rem;
+  border: 1px solid var(--main-border-color);
+  border-radius: var(--bs-border-radius, 0.4rem);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--link-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+  }
+
+  &.is-selected {
+    border-color: var(--link-color);
+    background-color: var(--main-hover-color, rgba(128, 128, 128, 0.06));
+
+    .pdfs-thumb-num {
+      color: var(--link-color);
+      font-weight: 600;
+    }
+  }
+}
+
+.pdfs-thumb-canvas-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 90px;
+  background: var(--card-bg, var(--card-bg-color));
+  border: 1px solid var(--main-border-color);
+  border-radius: var(--bs-border-radius, 0.3rem);
+  overflow: hidden;
+
+  canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.pdfs-thumb-num {
+  font-size: 0.72rem;
+  color: var(--text-muted-color);
+  margin-top: 0.35rem;
+}
+
+.pdfs-range-row {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--main-border-color);
+}
+
+.pdfs-range-label,
+.pdfs-name-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted-color);
+  margin-bottom: 0.25rem;
+}
+
+.pdfs-range,
+.pdfs-name {
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--bs-border-radius, 0.3rem);
+  border: 1px solid var(--main-border-color);
+  background: transparent;
+  color: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: var(--link-color);
+  }
+}
+
+.pdfs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+
+.pdfs-name-row {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.pdfs-action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#pdfs-extract-go:disabled,
+#pdfs-split-go:disabled {
+  opacity: 0.4;
+  cursor: default;
+  border-color: var(--main-border-color);
+  color: var(--text-muted-color);
+}
+
+@media (max-width: 576px) {
+  .pdfs-grid {
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  }
+
+  .pdfs-actions {
+    align-items: stretch;
+  }
+
+  .pdfs-action-buttons {
+    flex-direction: column;
+  }
+
+  .pdfs-name-row {
+    flex-basis: auto;
+  }
+}
+
+/* ---- PDF Compress ---- */
+/* Extends the PDF tools block above — reuses .ocr-tool-privacy, .ocr-drop,
+ * .ocr-btn and .ocr-status. New here: the quality/resolution control rows. */
+
+.pdfc-work-wrap {
+  margin-top: 1.25rem;
+  border: 1px solid var(--card-border-color, var(--main-border-color));
+  border-radius: var(--bs-border-radius, 0.5rem);
+  background: var(--card-bg, var(--card-bg-color));
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.pdfc-file-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+.pdfc-file-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted-color);
+  overflow-wrap: anywhere;
+}
+
+.pdfc-control-row {
+  margin-top: 1rem;
+
+  select,
+  input[type="range"] {
+    width: 100%;
+  }
+
+  select {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--bs-border-radius, 0.3rem);
+    border: 1px solid var(--main-border-color);
+    background: transparent;
+    color: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: var(--link-color);
+    }
+  }
+
+  input[type="range"] {
+    accent-color: var(--link-color);
+  }
+}
+
+.pdfc-control-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted-color);
+  margin-bottom: 0.3rem;
+}
+
+.pdfc-control-val {
+  font-variant-numeric: tabular-nums;
+}
+
+.pdfc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--main-border-color);
+}
+
+.pdfc-name-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted-color);
+  margin-bottom: 0.25rem;
+}
+
+.pdfc-name {
+  width: 11rem;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--bs-border-radius, 0.3rem);
+  border: 1px solid var(--main-border-color);
+  background: transparent;
+  color: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: var(--link-color);
+  }
+}
+
+#pdfc-go {
+  margin-left: auto;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+    border-color: var(--main-border-color);
+    color: var(--text-muted-color);
+  }
+}
+
+@media (max-width: 576px) {
+  .pdfc-actions {
+    align-items: stretch;
+  }
+
+  #pdfc-go {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .pdfc-name {
+    width: 100%;
+  }
+}
+
 /* ── Shared hub tiles (Tools + Emulators) ────────────────────────────────── */
 /*
  * Used by both _tabs/tools.md and _tabs/emulators.md so the two hubs can't

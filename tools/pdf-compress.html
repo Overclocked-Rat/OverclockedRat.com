@@ -1,0 +1,89 @@
+---
+layout: page
+title: PDF Compress
+permalink: /tools/pdf-compress/
+---
+
+<div id="pdfc" class="ocr-tool">
+  <p class="ocr-tool-privacy">
+    <i class="fas fa-lock"></i>
+    Your file is read directly by your browser and never uploaded. Nothing
+    leaves this device.
+  </p>
+
+  <div id="pdfc-drop" class="ocr-drop" tabindex="0" role="button"
+       aria-label="Choose a PDF file, or drop it here">
+    <i class="fas fa-file-pdf ocr-drop-icon"></i>
+    <p class="ocr-drop-main">Choose a PDF to compress</p>
+    <p class="ocr-drop-sub">or drop it here</p>
+  </div>
+  <input type="file" id="pdfc-file" accept="application/pdf,.pdf" hidden>
+
+  <div id="pdfc-work-wrap" class="pdfc-work-wrap" hidden>
+    <div class="pdfc-file-head">
+      <span id="pdfc-file-meta" class="pdfc-file-meta"></span>
+      <button type="button" id="pdfc-reset" class="ocr-btn ocr-btn-quiet">
+        Choose a different file
+      </button>
+    </div>
+
+    <div class="pdfc-control-row">
+      <label for="pdfc-quality" class="pdfc-control-label">
+        Image quality
+        <span id="pdfc-quality-val" class="pdfc-control-val">75%</span>
+      </label>
+      <input type="range" id="pdfc-quality" min="30" max="95" step="5" value="75">
+    </div>
+
+    <div class="pdfc-control-row">
+      <label for="pdfc-maxdim" class="pdfc-control-label">Max image size</label>
+      <select id="pdfc-maxdim">
+        <option value="1200">1200 px (screen / email)</option>
+        <option value="1600" selected>1600 px (documents)</option>
+        <option value="2000">2000 px (large prints)</option>
+        <option value="0">No limit (quality only)</option>
+      </select>
+    </div>
+
+    <div class="pdfc-actions">
+      <div class="pdfc-name-row">
+        <label for="pdfc-name" class="pdfc-name-label">Output name</label>
+        <input type="text" id="pdfc-name" class="pdfc-name" value="compressed"
+               spellcheck="false" autocomplete="off">
+      </div>
+      <button type="button" id="pdfc-go" class="ocr-btn ocr-btn-primary">
+        <i class="fas fa-compress"></i> Compress &amp; download
+      </button>
+    </div>
+  </div>
+
+  <p id="pdfc-status" class="ocr-status" role="status" aria-live="polite"></p>
+</div>
+
+<h3>Notes</h3>
+
+<ul>
+  <li>
+    This shrinks JPEG photos embedded in the PDF — text and vector graphics
+    are never touched or rasterized, so they stay crisp and selectable.
+  </li>
+  <li>
+    Works best on phone-scanned documents and photo-heavy PDFs. Documents
+    with no embedded photos, or images already efficiently compressed, may
+    see little or no reduction — you'll get a clear summary either way.
+  </li>
+  <li>
+    Some images are deliberately left untouched: CMYK photos, images with
+    transparency, and older fax-style scanned formats. Recompressing those
+    safely needs decoders this tool doesn't have, so they're skipped rather
+    than risked.
+  </li>
+  <li>
+    Password-protected PDFs can't be opened — you'll get a clear message
+    rather than a silent failure. Remove the password first, then compress.
+  </li>
+</ul>
+
+<script src="{{ '/assets/vendor/pdf-lib/pdf-lib.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/tool-tracker.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/tool-pdf-compress.js' | relative_url }}"></script>

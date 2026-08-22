@@ -1,0 +1,99 @@
+---
+layout: page
+title: PDF Split
+permalink: /tools/pdf-split/
+---
+
+<div id="pdfs" class="ocr-tool">
+  <p class="ocr-tool-privacy">
+    <i class="fas fa-lock"></i>
+    Your file is read directly by your browser and never uploaded. Nothing
+    leaves this device.
+  </p>
+
+  <div id="pdfs-drop" class="ocr-drop" tabindex="0" role="button"
+       aria-label="Choose a PDF file, or drop it here">
+    <i class="fas fa-file-pdf ocr-drop-icon"></i>
+    <p class="ocr-drop-main">Choose a PDF to split</p>
+    <p class="ocr-drop-sub">or drop it here</p>
+  </div>
+  <input type="file" id="pdfs-file" accept="application/pdf,.pdf" hidden>
+
+  <div id="pdfs-work-wrap" class="pdfs-work-wrap" hidden>
+    <div class="pdfs-file-head">
+      <span id="pdfs-file-meta" class="pdfs-file-meta"></span>
+      <button type="button" id="pdfs-reset" class="ocr-btn ocr-btn-quiet">
+        Choose a different file
+      </button>
+    </div>
+
+    <div class="pdfs-select-row">
+      <button type="button" id="pdfs-select-all" class="ocr-btn ocr-btn-quiet">
+        Select all
+      </button>
+      <button type="button" id="pdfs-select-none" class="ocr-btn ocr-btn-quiet">
+        Select none
+      </button>
+    </div>
+
+    <div id="pdfs-grid" class="pdfs-grid" role="group" aria-label="Pages"></div>
+
+    <div class="pdfs-range-row">
+      <label for="pdfs-range" class="pdfs-range-label">Pages</label>
+      <input type="text" id="pdfs-range" class="pdfs-range" placeholder="e.g. 1-3, 7"
+             spellcheck="false" autocomplete="off">
+    </div>
+
+    <div class="pdfs-actions">
+      <div class="pdfs-name-row">
+        <label for="pdfs-extract-name" class="pdfs-name-label">Output name</label>
+        <input type="text" id="pdfs-extract-name" class="pdfs-name" value="extract"
+               spellcheck="false" autocomplete="off">
+      </div>
+
+      <div class="pdfs-action-buttons">
+        <button type="button" id="pdfs-extract-go" class="ocr-btn ocr-btn-primary">
+          <i class="fas fa-scissors"></i> Extract selected pages
+        </button>
+        <button type="button" id="pdfs-split-go" class="ocr-btn">
+          <i class="fas fa-file-zipper"></i> Split every page (.zip)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <p id="pdfs-status" class="ocr-status" role="status" aria-live="polite"></p>
+</div>
+
+<h3>Notes</h3>
+
+<ul>
+  <li>
+    Click pages to select them, or type a range like <code>1-3, 7</code>.
+    Extracting always outputs pages in document order.
+  </li>
+  <li>
+    "Split every page" ignores the selection above — it always produces one
+    PDF per page for the whole document, zipped together.
+  </li>
+  <li>
+    Password-protected PDFs can't be opened — you'll get a clear message
+    rather than a silent failure. Remove the password first, then split.
+  </li>
+  <li>
+    Thumbnails render in this tab, so very large documents may take a moment.
+    If rendering fails for some reason, typing a page range still works.
+  </li>
+</ul>
+
+<script src="{{ '/assets/vendor/pdf-lib/pdf-lib.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/vendor/fflate/fflate.min.js' | relative_url }}"></script>
+<script type="module">
+  import * as pdfjsLib from "{{ '/assets/vendor/pdfjs/pdf.min.mjs' | relative_url }}";
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "{{ '/assets/vendor/pdfjs/pdf.worker.min.mjs' | relative_url }}";
+  // v6 is ESM-only with no global — bridge it for the classic tool script.
+  window.pdfjsLib = pdfjsLib;
+</script>
+<script src="{{ '/assets/js/tool-tracker.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/tool-pdf-split.js' | relative_url }}"></script>
