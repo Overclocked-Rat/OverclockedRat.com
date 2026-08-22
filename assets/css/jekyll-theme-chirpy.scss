@@ -105,4 +105,223 @@
   50% {
     transform: translateY(-2px);
   }
+}/* ── Emulators ───────────────────────────────────────────────────────────── */
+
+.ocr-emu-privacy {
+  font-size: 0.85rem;
+  color: var(--text-muted-color);
+  margin-bottom: 1.25rem;
+
+  i {
+    margin-right: 0.35rem;
+  }
+}
+
+.ocr-panel {
+  border: 1px solid var(--card-border-color, var(--main-border-color));
+  border-radius: var(--bs-border-radius, 0.5rem);
+  background: var(--card-bg, var(--card-bg-color));
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.ocr-panel-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.ocr-resume-file {
+  color: var(--text-muted-color);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+
+  i {
+    margin-right: 0.35rem;
+  }
+}
+
+/* Drop zone */
+.ocr-drop {
+  border: 2px dashed var(--main-border-color);
+  border-radius: var(--bs-border-radius, 0.5rem);
+  padding: 2.5rem 1.25rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover,
+  &:focus-visible,
+  &.is-over {
+    border-color: var(--link-color);
+    background-color: var(--main-hover-color, rgba(128, 128, 128, 0.06));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+  }
+}
+
+.ocr-drop-icon {
+  font-size: 1.75rem;
+  color: var(--link-color);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.ocr-drop-main {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.ocr-drop-sub,
+.ocr-emu-note {
+  font-size: 0.85rem;
+  color: var(--text-muted-color);
+  margin-bottom: 0;
+}
+
+.ocr-emu-note {
+  margin-top: 0.9rem;
+  text-align: center;
+}
+
+/* Player. EmulatorJS sizes itself to this container. */
+.ocr-player {
+  width: 100%;
+  max-width: 100%;
+
+  &:empty {
+    display: none;
+  }
+}
+
+/* Control bar */
+.ocr-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--card-border-color, var(--main-border-color));
+  border-radius: var(--bs-border-radius, 0.5rem);
+  background: var(--card-bg, var(--card-bg-color));
+}
+
+.ocr-control {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  label,
+  .ocr-control-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+
+    i {
+      margin-right: 0.3rem;
+      color: var(--text-muted-color);
+    }
+  }
+}
+
+.ocr-control-wide {
+  flex-wrap: wrap;
+}
+
+.ocr-control-val {
+  font-size: 0.8rem;
+  color: var(--text-muted-color);
+  min-width: 2.75rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ocr-volume {
+  width: 8rem;
+  accent-color: var(--link-color);
+}
+
+/* Buttons */
+.ocr-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ocr-btn {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--bs-border-radius, 0.4rem);
+  border: 1px solid var(--main-border-color);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  i {
+    margin-right: 0.3rem;
+  }
+
+  &:hover {
+    border-color: var(--link-color);
+    color: var(--link-color);
+  }
+
+  &.is-active {
+    border-color: var(--link-color);
+    color: var(--link-color);
+    font-weight: 600;
+  }
+}
+
+.ocr-btn-primary {
+  border-color: var(--link-color);
+  color: var(--link-color);
+  font-weight: 600;
+}
+
+.ocr-btn-quiet {
+  color: var(--text-muted-color);
+  border-color: transparent;
+}
+
+.ocr-btn-toggle {
+  min-width: 5rem;
+}
+
+/* Status line */
+.ocr-status {
+  font-size: 0.85rem;
+  color: var(--text-muted-color);
+  margin-top: 0.75rem;
+  min-height: 1.2rem;
+
+  &:empty {
+    margin-top: 0;
+  }
+}
+
+.ocr-status-error {
+  color: #d9534f;
+}
+
+.ocr-status-ok {
+  color: var(--link-color);
+}
+
+.ocr-emu-help {
+  margin-top: 2rem;
+}
+
+@media (max-width: 576px) {
+  .ocr-controls {
+    gap: 0.9rem;
+  }
+
+  #ocr-volume {
+    width: 6rem;
+  }
 }

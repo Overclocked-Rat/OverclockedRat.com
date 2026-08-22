@@ -1,0 +1,57 @@
+---
+layout: emulator
+title: Game Boy Advance
+system_id: gba
+system_name: Game Boy Advance
+core: mgba
+extensions: .gba,.zip,.7z
+extensions_label: .gba, or a .zip / .7z containing one
+permalink: /emulators/gba/
+---
+
+<h3>Controls</h3>
+
+<table>
+  <thead>
+    <tr><th>GBA</th><th>Keyboard</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>D-Pad</td><td>Arrow keys</td></tr>
+    <tr><td>A / B</td><td><kbd>X</kbd> / <kbd>Z</kbd></td></tr>
+    <tr><td>L / R</td><td><kbd>Q</kbd> / <kbd>E</kbd></td></tr>
+    <tr><td>Start / Select</td><td><kbd>Enter</kbd> / <kbd>Shift</kbd></td></tr>
+  </tbody>
+</table>
+
+<p>
+  Controls can be remapped, and gamepads configured, from the emulator's own
+  settings menu (the gear icon on the player). Shaders &mdash; CRT, scanlines,
+  and similar &mdash; live in that same menu under <em>Shaders</em>, alongside
+  save states and screen recording.
+</p>
+
+<h3>About saves</h3>
+
+<p>
+  There are two different things called "saving", and it's worth knowing which
+  is which:
+</p>
+
+<ul>
+  <li>
+    <strong>In-game saves</strong> are what the cartridge itself would store &mdash;
+    saving at a Pok&eacute;mon Center, for instance. These are kept automatically in
+    this browser, and <strong>Export .sav</strong> downloads them in the standard
+    format that mGBA, VBA-M and most other emulators can read.
+  </li>
+  <li>
+    <strong>Save states</strong> are instant snapshots of the exact moment you're
+    at, taken from the emulator's own menu. They're also kept in this browser, but
+    they're emulator-specific and aren't part of the <code>.sav</code> export.
+  </li>
+</ul>
+
+<p>
+  Because everything is stored in this browser, clearing site data will remove it.
+  Export anything you'd be sad to lose.
+</p>

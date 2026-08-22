@@ -1,0 +1,94 @@
+---
+layout: page
+---
+
+{% assign data_path = '/assets/emulatorjs/data/' | relative_url %}
+
+<div
+  id="ocr-emu"
+  class="ocr-emu"
+  data-core="{{ page.core }}"
+  data-system="{{ page.system_id }}"
+  data-accept="{{ page.extensions }}"
+  data-datapath="{{ data_path }}"
+>
+  <p class="ocr-emu-privacy">
+    <i class="fas fa-lock"></i>
+    Your ROM is read directly by your browser and never uploaded. Saves stay on this
+    device.
+  </p>
+
+  <!-- Resume panel: shown only when a previously loaded ROM is found -->
+  <div id="ocr-resume" class="ocr-panel" hidden>
+    <p class="ocr-panel-title">Continue where you left off</p>
+    <p class="ocr-resume-file"><i class="fas fa-compact-disc"></i> <span id="ocr-resume-name"></span></p>
+    <div class="ocr-btn-row">
+      <button type="button" id="ocr-resume-btn" class="ocr-btn ocr-btn-primary">
+        <i class="fas fa-play"></i> Resume
+      </button>
+      <button type="button" id="ocr-resume-other" class="ocr-btn">
+        Load a different ROM
+      </button>
+      <button type="button" id="ocr-forget" class="ocr-btn ocr-btn-quiet">
+        Forget this ROM
+      </button>
+    </div>
+  </div>
+
+  <!-- Picker panel -->
+  <div id="ocr-picker" class="ocr-panel" hidden>
+    <div id="ocr-drop" class="ocr-drop" tabindex="0" role="button"
+         aria-label="Choose a ROM file, or drop one here">
+      <i class="fas fa-file-arrow-up ocr-drop-icon"></i>
+      <p class="ocr-drop-main">Choose a {{ page.system_name }} ROM</p>
+      <p class="ocr-drop-sub">or drop the file here &middot; {{ page.extensions_label }}</p>
+    </div>
+    <input type="file" id="ocr-file" accept="{{ page.extensions }}" hidden>
+    <p class="ocr-emu-note">
+      You supply your own ROM &mdash; none are hosted here or linked from this site.
+    </p>
+  </div>
+
+  <!-- Emulator mounts here -->
+  <div id="ocr-player" class="ocr-player"></div>
+
+  <!-- Controls: revealed once the core is running -->
+  <div id="ocr-controls" class="ocr-controls" hidden>
+    <div class="ocr-control">
+      <label for="ocr-volume"><i class="fas fa-volume-high"></i> Volume</label>
+      <input type="range" id="ocr-volume" min="0" max="100" step="1" value="50">
+      <span id="ocr-volume-val" class="ocr-control-val">50%</span>
+    </div>
+
+    <div class="ocr-control">
+      <span class="ocr-control-label"><i class="fas fa-gauge-high"></i> Speed</span>
+      <button type="button" id="ocr-speed" class="ocr-btn ocr-btn-toggle" aria-pressed="false">
+        Normal
+      </button>
+    </div>
+
+    <div class="ocr-control ocr-control-wide">
+      <span class="ocr-control-label"><i class="fas fa-floppy-disk"></i> Save data</span>
+      <div class="ocr-btn-row">
+        <button type="button" id="ocr-export" class="ocr-btn">
+          <i class="fas fa-download"></i> Export .sav
+        </button>
+        <button type="button" id="ocr-import" class="ocr-btn">
+          <i class="fas fa-upload"></i> Import .sav
+        </button>
+        <button type="button" id="ocr-change" class="ocr-btn ocr-btn-quiet">
+          Change ROM
+        </button>
+      </div>
+      <input type="file" id="ocr-import-file" accept=".sav,.srm" hidden>
+    </div>
+  </div>
+
+  <p id="ocr-status" class="ocr-status" role="status" aria-live="polite"></p>
+
+  <div class="ocr-emu-help">
+    {{ content }}
+  </div>
+</div>
+
+<script src="{{ '/assets/js/emulator-shell.js' | relative_url }}"></script>
