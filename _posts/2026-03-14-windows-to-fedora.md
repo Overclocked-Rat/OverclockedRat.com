@@ -18,3 +18,5 @@ Fedora has been great so far, everything is so clean and purpose built, there is
 Originally i opted to go with Gnome as the desktop enviroment for Fedora and it has worked quite well, but over the last month i have realised i am not the target audience as it caters heavily to multi desktop use and easily switching between different setups. As i run dual monitors i so rarely need this and would prefer to have a more traditional layout, so i intend to swap to KDE instead and trial that for some time.
 
 Overall i have quite enjoyed the switch and the freedom/peace of mind that has come with it.
+
+~ Goodnight - The Rat.

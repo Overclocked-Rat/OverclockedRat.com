@@ -54,3 +54,5 @@ At the end of it all im still tinkering and constantly breaking things, but its 
 I plan to look into more functional services such as a proper Home assistant setup with automation for the house and the appliances within.
 
 Given how much i have learnt from jumping off the deep end on this, i highly recomend anyone with any interest at all to just pick up an old cheap mini pc off Ebay and go for it.
+
+~ Goodnight - The Rat.
